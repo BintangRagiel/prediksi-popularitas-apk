@@ -24,83 +24,61 @@ st.set_page_config(
 
 st.markdown("""
 <style>
+.stApp { background: linear-gradient(180deg,#ffffff 0%,#f7f8fc 100%); color:#17213b; }
+.block-container { max-width:1500px; padding:2rem 2.5rem .5rem 2.5rem; }
+[data-testid="stHeader"] { background:transparent; }
+.main-title { text-align:center; color:#14203b; font-size:42px; font-weight:800; letter-spacing:-1.2px; margin:.1rem 0 .25rem; }
+.subtitle { text-align:center; color:#697694; font-size:17px; margin-bottom:1.8rem; }
+.metric-card { background:rgba(255,255,255,.97); border:1px solid #e8eaf1; border-radius:18px; min-height:105px; padding:20px 26px; box-shadow:0 5px 18px rgba(24,34,66,.07); display:flex; align-items:center; gap:18px; }
+.metric-icon { width:58px; height:58px; border-radius:50%; background:linear-gradient(135deg,#f1e9ff,#f7f2ff); display:flex; align-items:center; justify-content:center; font-size:27px; flex-shrink:0; }
+.metric-label { color:#56627d; font-size:14px; margin-bottom:3px; }
+.metric-value { color:#5945d8; font-size:25px; font-weight:800; line-height:1.1; }
+.input-card { background:rgba(255,255,255,.97); border:1px solid #e7e9f0; border-radius:20px; padding:25px; margin-top:22px; box-shadow:0 5px 18px rgba(24,34,66,.07); }
 
-/* Background */
-.stApp {
-    background-color: #EDEFF3;
+/* Satu card besar untuk seluruh area input */
+.st-key-input_card {
+    background:rgba(255,255,255,.98);
+    border:1px solid #e1e5ee !important;
+    border-radius:20px !important;
+    padding:24px 24px 20px 24px !important;
+    margin-top:22px;
+    box-shadow:0 5px 18px rgba(24,34,66,.07);
 }
 
-/* Judul utama */
-.main-title {
-    font-size: 38px;
-    font-weight: 700;
-    text-align: center;
-    margin-bottom: 5px;
+/* Hilangkan jarak berlebihan di dalam card */
+.st-key-input_card > div {
+    gap:0.65rem;
 }
 
-.subtitle {
-    text-align: center;
-    font-size: 16px;
-    color: #6b7280;
-    margin-bottom: 30px;
+/* Preview dan tombol tetap menjadi bagian dari card */
+.st-key-input_card [data-testid="stExpander"] {
+    margin-top:14px;
 }
 
-/* Card */
-.card {
-    background: white;
-    padding: 24px;
-    border-radius: 16px;
-    border: 1px solid #e5e7eb;
-    margin-bottom: 20px;
+.st-key-input_card .stButton {
+    margin-top:14px;
+    margin-bottom:0;
 }
-
-/* Result */
-.result-popular {
-    background: #ecfdf5;
-    border: 1px solid #a7f3d0;
-    padding: 25px;
-    border-radius: 16px;
-    text-align: center;
-    margin-top: 20px;
-}
-
-.result-not-popular {
-    background: #fff7ed;
-    border: 1px solid #fed7aa;
-    padding: 25px;
-    border-radius: 16px;
-    text-align: center;
-    margin-top: 20px;
-}
-
-.result-title {
-    font-size: 16px;
-    color: #6b7280;
-}
-
-.result-value {
-    font-size: 32px;
-    font-weight: 700;
-    margin-top: 5px;
-}
-
-/* Tombol */
-.stButton > button {
-    width: 100%;
-    height: 50px;
-    border-radius: 10px;
-    font-weight: 600;
-    font-size: 16px;
-    background-color: #4F46E5;
-    color: white;
-    border: none;
-}
-
-.stButton > button:hover {
-    background-color: #4338CA;
-    color: white;
-}
-
+.section-title { color:#17213b; font-size:22px; font-weight:800; margin-bottom:3px; }
+.section-subtitle { color:#6d7891; font-size:14px; margin-bottom:18px; }
+label,[data-testid="stWidgetLabel"] p { color:#1b2946 !important; font-weight:650 !important; }
+div[data-baseweb="select"]>div { border:1px solid #dfe3ec !important; border-radius:11px !important; min-height:48px !important; background:#fff !important; }
+div[data-baseweb="select"]>div:hover { border-color:#8d7be8 !important; }
+input { border-radius:11px !important; }
+.feature-box { background:linear-gradient(135deg,#eef7ff,#eaf3ff); border-radius:13px; border:1px solid #d9eaff; padding:17px 19px; margin-top:27px; color:#2167bd; }
+.feature-title { font-weight:800; font-size:15px; margin-bottom:6px; }
+.feature-text { font-size:14px; }
+[data-testid="stExpander"] { border:1px solid #e0e4ec !important; border-radius:12px !important; background:#fff !important; margin-top:15px; }
+.stButton { margin-top:16px; }
+.stButton>button { width:100%; height:55px; border:none !important; border-radius:12px !important; background:linear-gradient(90deg,#7040d8 0%,#246fe8 100%) !important; color:#fff !important; font-size:16px !important; font-weight:800 !important; box-shadow:0 7px 18px rgba(75,76,210,.22); transition:.2s ease; }
+.stButton>button:hover { transform:translateY(-1px); box-shadow:0 10px 22px rgba(75,76,210,.30); }
+.result-popular,.result-not-popular { padding:24px; border-radius:16px; text-align:center; margin-top:15px; }
+.result-popular { background:#ecfdf5; border:1px solid #b7efd5; }
+.result-not-popular { background:#fff7ed; border:1px solid #fed7aa; }
+.result-title { color:#66718b; font-size:14px; }
+.result-value { font-size:30px; font-weight:800; margin-top:4px; }
+.footer { text-align:center; color:#77819a; font-size:13px; padding:24px 0 8px; margin-top:20px; border-top:1px solid #e7e9ef; }
+@media(max-width:800px){ .block-container{padding:1rem 1rem .5rem;} .main-title{font-size:30px;} .subtitle{font-size:14px;} .metric-card{margin-bottom:12px;} }
 </style>
 """, unsafe_allow_html=True)
 
@@ -175,143 +153,143 @@ st.markdown(
 # INFORMASI MODEL
 # ============================================================
 
-col1, col2, col3 = st.columns(3)
+m1, m2, m3 = st.columns(3)
 
-with col1:
-    st.metric(
-        label="Model",
-        value="Random Forest"
-    )
-
-with col2:
-    st.metric(
-        label="Accuracy",
-        value="91.06%"
-    )
-
-with col3:
-    st.metric(
-        label="F1-Score Macro",
-        value="0.7991"
-    )
-
-
-st.write("")
-
-
-# ============================================================
-# INPUT DATA
-# ============================================================
-
-st.subheader("Masukkan Data Aplikasi")
-
-st.caption(
-    "Isi informasi aplikasi di bawah ini untuk melakukan prediksi."
-)
-
-left, right = st.columns(2)
-
-
-# ============================================================
-# KOLOM KIRI
-# ============================================================
-
-with left:
-
-    category = st.selectbox(
-        "Category",
-        options=list(le_category.classes_),
-        help="Pilih kategori aplikasi."
-    )
-
-    rating = st.slider(
-        "Rating",
-        min_value=0.0,
-        max_value=5.0,
-        value=4.0,
-        step=0.1,
-        help="Masukkan rating aplikasi antara 0 sampai 5."
-    )
-
-    reviews = st.number_input(
-        "Jumlah Reviews",
-        min_value=0,
-        value=1000,
-        step=100,
-        help="Masukkan jumlah ulasan aplikasi."
-    )
-
-
-# ============================================================
-# KOLOM KANAN
-# ============================================================
-
-with right:
-
-    app_type = st.selectbox(
-        "Type",
-        options=list(le_type.classes_),
-        help="Pilih apakah aplikasi Free atau Paid."
-    )
-
-    content_rating = st.selectbox(
-        "Content Rating",
-        options=list(le_content.classes_),
-        help="Pilih klasifikasi usia aplikasi."
-    )
-
-    st.info(
-        """
-        **Fitur yang digunakan model**
-
-        Category, Rating, Reviews, Type, dan Content Rating.
-        """
-    )
-
-
-# ============================================================
-# PREVIEW INPUT
-# ============================================================
+with m1:
+    st.markdown("""
+    <div class="metric-card"><div class="metric-icon">🧠</div><div>
+    <div class="metric-label">Model</div><div class="metric-value">Random Forest</div>
+    </div></div>
+    """, unsafe_allow_html=True)
+with m2:
+    st.markdown("""
+    <div class="metric-card"><div class="metric-icon">🎯</div><div>
+    <div class="metric-label">Accuracy</div><div class="metric-value">91.06%</div>
+    </div></div>
+    """, unsafe_allow_html=True)
+with m3:
+    st.markdown("""
+    <div class="metric-card"><div class="metric-icon">📊</div><div>
+    <div class="metric-label">F1-Score Macro</div><div class="metric-value">0.7991</div>
+    </div></div>
+    """, unsafe_allow_html=True)
 
 st.write("")
 
-with st.expander("Lihat Data Input"):
 
-    preview = pd.DataFrame({
-        "Fitur": [
+# ============================================================
+# INPUT DATA - SATU CARD BESAR
+# ============================================================
+
+with st.container(border=True, key="input_card"):
+
+    st.markdown(
+        '<div class="section-title">📝 Masukkan Data Aplikasi</div>',
+        unsafe_allow_html=True
+    )
+    st.markdown(
+        '<div class="section-subtitle">Isi informasi aplikasi di bawah ini untuk melakukan prediksi.</div>',
+        unsafe_allow_html=True
+    )
+
+    left, right = st.columns(2, gap="large")
+
+    # ========================================================
+    # KOLOM KIRI
+    # ========================================================
+
+    with left:
+
+        category = st.selectbox(
             "Category",
+            options=list(le_category.classes_),
+            help="Pilih kategori aplikasi."
+        )
+
+        rating = st.slider(
             "Rating",
-            "Reviews",
+            min_value=0.0,
+            max_value=5.0,
+            value=4.0,
+            step=0.1,
+            help="Masukkan rating aplikasi antara 0 sampai 5."
+        )
+
+        reviews = st.number_input(
+            "Jumlah Reviews",
+            min_value=0,
+            value=1000,
+            step=100,
+            help="Masukkan jumlah ulasan aplikasi."
+        )
+
+    # ========================================================
+    # KOLOM KANAN
+    # ========================================================
+
+    with right:
+
+        app_type = st.selectbox(
             "Type",
-            "Content Rating"
-        ],
-        "Nilai": [
-            category,
-            rating,
-            reviews,
-            app_type,
-            content_rating
-        ]
-    })
+            options=list(le_type.classes_),
+            help="Pilih apakah aplikasi Free atau Paid."
+        )
 
-    st.dataframe(
-        preview,
-        use_container_width=True,
-        hide_index=True
+        content_rating = st.selectbox(
+            "Content Rating",
+            options=list(le_content.classes_),
+            help="Pilih klasifikasi usia aplikasi."
+        )
+
+        st.markdown("""
+        <div class="feature-box">
+            <div class="feature-title">ⓘ &nbsp; Fitur yang digunakan model</div>
+            <div class="feature-text">Category, Rating, Reviews, Type, dan Content Rating.</div>
+        </div>
+        """, unsafe_allow_html=True)
+
+    # ========================================================
+    # PREVIEW INPUT
+    # ========================================================
+
+    st.write("")
+
+    with st.expander("Lihat Data Input"):
+
+        preview = pd.DataFrame({
+            "Fitur": [
+                "Category",
+                "Rating",
+                "Reviews",
+                "Type",
+                "Content Rating"
+            ],
+            "Nilai": [
+                category,
+                rating,
+                reviews,
+                app_type,
+                content_rating
+            ]
+        })
+
+        st.dataframe(
+            preview,
+            use_container_width=True,
+            hide_index=True
+        )
+
+    # ========================================================
+    # TOMBOL PREDIKSI
+    # ========================================================
+
+    st.write("")
+
+    predict_button = st.button(
+        "🔍 Prediksi Popularitas",
+        type="primary",
+        use_container_width=True
     )
-
-
-# ============================================================
-# TOMBOL PREDIKSI
-# ============================================================
-
-st.write("")
-
-predict_button = st.button(
-    "🔍 Prediksi Popularitas",
-    type="primary",
-    use_container_width=True
-)
 
 
 # ============================================================
