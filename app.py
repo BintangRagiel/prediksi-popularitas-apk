@@ -164,13 +164,13 @@ with m1:
 with m2:
     st.markdown("""
     <div class="metric-card"><div class="metric-icon">🎯</div><div>
-    <div class="metric-label">Accuracy</div><div class="metric-value">91.06%</div>
+    <div class="metric-label">Accuracy</div><div class="metric-value">91.15%</div>
     </div></div>
     """, unsafe_allow_html=True)
 with m3:
     st.markdown("""
     <div class="metric-card"><div class="metric-icon">📊</div><div>
-    <div class="metric-label">F1-Score Macro</div><div class="metric-value">0.7991</div>
+    <div class="metric-label">F1-Score Macro</div><div class="metric-value">0.7992</div>
     </div></div>
     """, unsafe_allow_html=True)
 
